@@ -1,0 +1,25 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "p0_contract_coverage.png": {
+      "sha256": "82c407fd118a1cfda351b80642b76850bb8edb4027061c881b533c52d6bd608e",
+      "bytes": 166462
+    },
+    "routing_snapshot.json": {
+      "sha256": "a3204257b8be6e84edbc22e547c34f48f9ccc45c9c06b2663436e724ec4f6907",
+      "bytes": 18982
+    },
+    "routing_snapshot.jsonl": {
+      "sha256": "c10ebc20330122514de9fa4a4c1453c38e62c3b8e153607edf20f8604a287dc9",
+      "bytes": 11552
+    },
+    "routing_snapshot.png": {
+      "sha256": "6060478c66988f7624257f042e5c051097b3a8c292299a9f550fa6c79027898e",
+      "bytes": 254236
+    },
+    "summary.json": {
+      "sha256": "5213e3dee78447d9195a59fb643f6f9c14d9cbe9326245898e38ee72c8a5f56c",
+      "bytes": 107
+    }
+  }
+}

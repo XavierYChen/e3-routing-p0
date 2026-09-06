@@ -1,0 +1,10 @@
+results/run-*/
+results/verified-p0-cpu-v1-20260906/
+results/verified-p0-cpu-v2-20260906/
+results/verified-p0-cpu-v3-20260906/
+results/verified-p0-cpu-v4-20260906/
+env/runtime/
+Ultralytics/
+__pycache__/
+.pytest_cache/
+.ruff_cache/

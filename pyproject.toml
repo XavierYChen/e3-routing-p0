@@ -1,0 +1,13 @@
+[project]
+name = "e3-routing-p0"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["matplotlib", "numpy"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
