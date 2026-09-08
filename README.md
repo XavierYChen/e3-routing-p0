@@ -47,4 +47,3 @@ run_tests.cmd
 P0 证明三族可以用统一 contract 记录并生成静态图。训练态长时间写入、TensorBoard/W&B/实时面板和训练减速 <10% 属于 P1；token 路由原图叠加和视频属于 P2。
 
 腾讯基线 commit：`246e79cfe418cfd90f4738bace56b02245dc38f8`。Smoke 证据位于配套的 [e3-routing-smoke](https://github.com/XavierYChen/e3-routing-smoke) 仓库。
-
