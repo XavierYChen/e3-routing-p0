@@ -36,6 +36,16 @@ def test_invalid_evidence_is_rejected(usage):
         record(expert_usage=usage)
 
 
+def test_float16_scale_roundoff_is_normalized():
+    value = record(num_experts=3, top_k=2, expert_usage=[0.33325, 0.33325, 0.33325])
+    assert sum(value["expert_usage"]) == pytest.approx(1.0, abs=1e-12)
+
+
+def test_material_probability_error_remains_rejected():
+    with pytest.raises(ValueError, match="sum to one"):
+        record(num_experts=3, top_k=2, expert_usage=[0.32, 0.32, 0.32])
+
+
 def test_schema_rejects_semantic_drift():
     value = record()
     value["usage_semantics"] = "hit_rate"

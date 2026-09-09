@@ -26,9 +26,13 @@ def normalize_vector(values: Any, count: int, field: str) -> list[float]:
         raise ValueError(f"{field}: expected {count} values, got {len(result)}")
     if not all(math.isfinite(value) and value >= 0.0 for value in result):
         raise ValueError(f"{field}: values must be finite and non-negative")
-    if not math.isclose(sum(result), 1.0, rel_tol=0.0, abs_tol=1e-4):
+    total = sum(result)
+    # Float16 router summaries can accumulate a small reduction error. Accept only
+    # a narrow numerical tolerance, then store an exactly normalized probability
+    # vector so downstream entropy and Gini remain comparable across precisions.
+    if not math.isclose(total, 1.0, rel_tol=0.0, abs_tol=2e-3):
         raise ValueError(f"{field}: values must sum to one")
-    return result
+    return [value / total for value in result]
 
 
 def normalized_entropy(values: list[float]) -> float:
