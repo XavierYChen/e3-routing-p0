@@ -5,6 +5,10 @@
       "sha256": "82c407fd118a1cfda351b80642b76850bb8edb4027061c881b533c52d6bd608e",
       "bytes": 166462
     },
+    "routing_cross_family.png": {
+      "sha256": "b35861a84b43ed8dbe9e65c088c813102fbe5830d0d4138623487cc96b005599",
+      "bytes": 85490
+    },
     "routing_snapshot.json": {
       "sha256": "a3204257b8be6e84edbc22e547c34f48f9ccc45c9c06b2663436e724ec4f6907",
       "bytes": 18982

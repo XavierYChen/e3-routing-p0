@@ -23,6 +23,10 @@
 
 这张图是 P0 特有证据：显示三族层数、逐族 schema 校验覆盖率以及可复用 sink。路由数值回归图仍保留在 [routing_snapshot.png](results/verified-p0-cpu-v5-20260906/routing_snapshot.png)，它应与 smoke 在同输入下接近。
 
+![P0 跨族路由汇总](results/verified-p0-cpu-v5-20260906/routing_cross_family.png)
+
+跨族图补充展示 13 个路由层的平均归一化熵、负载 Gini 和主导专家占比。它用于快速发现极端均匀或单专家状态，不用于给三族排“优劣”：MOE 的 usage 是 Top-K 选择占比，MOT/LATENT 的 usage 是平均混合概率，图中已把这项语义差异写明。统计来自同一份 `routing_snapshot.json`，没有为图表重新运行或改动模型。
+
 完整产物位于 [results/verified-p0-cpu-v5-20260906](results/verified-p0-cpu-v5-20260906/)。
 
 ## 运行

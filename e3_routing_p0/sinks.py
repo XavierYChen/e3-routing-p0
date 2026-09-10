@@ -201,3 +201,56 @@ def render_contract_summary(records: list[dict[str, Any]], output: str | Path) -
     figure.savefig(output, dpi=180, bbox_inches="tight")
     plt.close(figure)
     return output
+
+
+def render_cross_family_summary(
+    records: list[dict[str, Any]], output: str | Path, *, context: str = "one validated routing snapshot"
+) -> Path:
+    """Summarize comparable normalized metrics across families without hiding semantics."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    for record in records:
+        validate_record(record)
+    families = [family for family in ("moe", "mot", "latent") if any(r["family"] == family for r in records)]
+    if not families:
+        raise ValueError("no supported routing records to summarize")
+    metrics = [
+        ("Mean normalized entropy", "normalized_entropy", "#2563eb"),
+        ("Mean load Gini", "normalized_gini", "#f59e0b"),
+        ("Mean dominant share", "dominant_share", "#10b981"),
+    ]
+    x = np.arange(len(families))
+    width = 0.24
+    figure, axis = plt.subplots(figsize=(10.8, 6.2))
+    for index, (label, key, color) in enumerate(metrics):
+        values = [
+            float(np.mean([record[key] for record in records if record["family"] == family]))
+            for family in families
+        ]
+        bars = axis.bar(x + (index - 1) * width, values, width, label=label, color=color, alpha=0.9)
+        axis.bar_label(bars, labels=[f"{value:.3f}" for value in values], padding=3, fontsize=9)
+    layer_counts = [sum(record["family"] == family for record in records) for family in families]
+    axis.set_xticks(x, [f"{family.upper()}\n(n={count} layers)" for family, count in zip(families, layer_counts)])
+    axis.set_ylabel("Metric value (0–1)")
+    axis.set_ylim(0.0, 1.12)
+    axis.set_title(f"E3 P0 cross-family routing summary\n{context}")
+    axis.grid(axis="y", alpha=0.25)
+    axis.legend(loc="upper left", ncols=3, fontsize=9)
+    figure.text(
+        0.5,
+        0.015,
+        "Layer means. MOE usage is Top-K selection share; MOT/LATENT usage is mean mixture probability.",
+        ha="center",
+        fontsize=9,
+        color="#475569",
+    )
+    figure.tight_layout(rect=(0, 0.045, 1, 1))
+    output = Path(output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    figure.savefig(output, dpi=180, bbox_inches="tight")
+    plt.close(figure)
+    return output

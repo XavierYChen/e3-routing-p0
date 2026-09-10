@@ -13,7 +13,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from .collector import RoutingCollector
-from .sinks import JsonlSink, render_contract_summary, render_static, write_snapshot
+from .sinks import JsonlSink, render_contract_summary, render_cross_family_summary, render_static, write_snapshot
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -153,6 +153,11 @@ def main(argv: list[str] | None = None) -> int:
         title=f"E3 P0 unified routing snapshot — {image.name} — seed {args.seed}",
     )
     render_contract_summary(records, args.output / "p0_contract_coverage.png")
+    render_cross_family_summary(
+        records,
+        args.output / "routing_cross_family.png",
+        context=f"{image.name} · {device} · seed={args.seed} · imgsz={args.imgsz}",
+    )
     (args.output / "summary.json").write_text(
         json.dumps({"status": "passed", "records": len(records), "families": args.families}, indent=2) + "\n",
         encoding="utf-8",
