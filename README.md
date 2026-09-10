@@ -2,7 +2,7 @@
 
 腾讯犀牛鸟 E3 路由透视镜的 P0 独立仓库。目标是把 smoke 的一次性验证提炼为可复用基础设施：同一采集接口、同一字段字典、MoE/MoT/Latent 三类结构化日志与静态图。
 
-阶段导航：[Smoke 准入证据](https://github.com/XavierYChen/e3-routing-smoke) · **P0（本仓库）** · [P1 实时面板与训练开销](https://github.com/XavierYChen/e3-routing-p1) · [P2 token 原图叠加与演示](https://github.com/XavierYChen/e3-routing-p2)。
+阶段导航：[Smoke 准入证据](https://github.com/XavierYChen/e3-routing-smoke) · **P0（本仓库）** · [P1 实时面板与训练开销](https://github.com/XavierYChen/e3-routing-p1) · [P2 token 原图叠加与演示](https://github.com/XavierYChen/e3-routing-p2) · [最终报告与消融](https://github.com/XavierYChen/e3-routing-final-report)。
 
 本仓库不复制或修改腾讯核心 forward。运行时通过临时 forward hook 观察锁定的 YOLO-Master checkout，退出上下文后立即移除 hook。
 
